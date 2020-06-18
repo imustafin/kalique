@@ -1,0 +1,17 @@
+<h1>Kalique</h1>
+
+<h2>Text generation</h2>
+
+
+<%= form_with local: true do |form| %>
+  <p>
+    <%= form.label :seed %><br>
+    <%= form.text_field :seed %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<%= @generated %>
