@@ -5,6 +5,8 @@ services:
     image: postgres:12.3
     environment:
       POSTGRES_PASSWORD: 123
+    volumes:
+      - ../kalique_data/pg:/var/lib/postgresql/data
 
   app:
     build:
@@ -13,9 +15,11 @@ services:
         appdir: /appdir
     environment:
       PG_HOST: pg
+      BUNDLE_PATH: /bundle
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - .:/appdir
+      - .:/appdir:cached
+      - ../kalique_data/bundle:/bundle
     ports:
       - "3000:3000"
     depends_on:
