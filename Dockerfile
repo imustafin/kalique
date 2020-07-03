@@ -72,8 +72,11 @@ RUN set -ex \
 WORKDIR /app
 
 
-## Install app
-FROM kalique_base AS kalique_production
+## Full installation
+FROM kalique_base AS kalique_full
+
+ARG RAILS_ENV
+RUN echo $RAILS_ENV
 
 COPY Gemfile /app
 COPY Gemfile.lock /app

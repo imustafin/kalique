@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  pg:
+    image: postgres:12.3
+    environment:
+      POSTGRES_PASSWORD: 123
+
+  test:
+    build:
+      context: .
+      target: kalique_full
+      args:
+        RAILS_ENV: test
+    image: test
+    environment:
+      PG_HOST: pg
+    volumes: []
+    depends_on:
+      - pg
+    command: ["/bin/bash", "-c", "rake db:test:prepare && rake spec"]
+
+volumes:
+  bundle:
