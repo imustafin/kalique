@@ -24,3 +24,16 @@ bundle install
 This docker-compose has `rails` service,
 while `rails` is running the application is available at
 `localhost:3000`.
+
+### Running Tests in Development
+This should be done in `runner`.
+
+To prepare test database do
+```
+rake db:test:prepare
+```
+
+To run tests do
+```
+rake spec
+```
