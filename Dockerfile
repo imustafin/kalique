@@ -81,4 +81,9 @@ RUN echo $RAILS_ENV
 COPY Gemfile /app
 COPY Gemfile.lock /app
 RUN bundle install
+
+COPY package.json /app
+COPY yarn.lock /app
+RUN yarn install
+
 COPY . /app
