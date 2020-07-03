@@ -87,3 +87,8 @@ COPY yarn.lock /app
 RUN yarn install
 
 COPY . /app
+
+RUN if [ "x$RAILS_ENV" = "xproduction" ]; then \
+  export SECRET_KEY_BASE="$(openssl rand -base64 32)"; \
+  bundle exec rake assets:precompile ; \
+  fi
