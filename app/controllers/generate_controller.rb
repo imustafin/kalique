@@ -1,7 +1,5 @@
 class GenerateController < ApplicationController
   def index
-    if params[:seed]
-      @generated = params[:seed] * 2 + ' dabl epl'
-    end
+    @generated = TextGenerator.new.generate(params[:seed])
   end
 end
