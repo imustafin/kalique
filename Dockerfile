@@ -1,5 +1,5 @@
 # Dockerfile for the rails app
-FROM ruby:2.7.1-buster
+FROM ruby:2.7.1-buster AS kalique_base
 
 ## Install node and yarn
 # From https://github.com/nodejs/docker-node/blob/1d6a051d71e817f3947612a260ddcb02e48c2f74/14/alpine3.10/Dockerfile
@@ -69,15 +69,13 @@ RUN set -ex \
   # smoke test
   && yarn --version
 
+WORKDIR /app
 
 
 ## Install app
-ARG appdir=/app
+FROM kalique_base AS kalique_production
 
-RUN mkdir -p $appdir
-WORKDIR $appdir
-
-COPY Gemfile .
-COPY Gemfile.lock .
+COPY Gemfile /app
+COPY Gemfile.lock /app
 RUN bundle install
-COPY . .
+COPY . /app
