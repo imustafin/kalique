@@ -3,25 +3,24 @@ Pronounced as /kal'ik/.
 
 Kalique is a text generator written in Ruby on Rails.
 
-## Installing
-Install ruby 2.6.1, sqlite3, node.js, yarn
-
-
-### In Vagrant
-
-Copy packaged zip to `/home/vagrant/`
-
-Then
+## Development
+Development environment can be started by running
 ```
-sudo su
-unzip kalique.zip
-source "/etc/profile.d/rvm.sh"
-gem install bundler
+docker-compose -f development.yml up --build
+```
+Where `--build` is optional.
+
+To run commands in the environment, use `runner` service. Connect to it
+using
+```
+docker-compose -f development.yml run --rm runner
+```
+
+First run might require
+```
 bundle install
-yarn install
-
-rails test # for tests
-
-rails s # to start the server
 ```
 
+This docker-compose has `rails` service,
+while `rails` is running the application is available at
+`localhost:3000`.
