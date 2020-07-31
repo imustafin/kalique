@@ -9,3 +9,27 @@
 <%= button_to 'Load posts', admin_load_posts_path, method: :post %>
 <br>
 <%= button_to 'Delete all posts', admin_delete_all_posts_path, method: :post %>
+
+<table border=1>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Text</th>
+      <th>Post Id</th>
+      <th>Domain</th>
+      <th>Parse Time</th>
+    </tr>
+  </thead>
+  <tbody>  
+    <% @texts.each do |p| %>
+      <tr>
+        <td><%= p.id %></td>
+        <td><%= simple_format(p.text) %></td>
+        <td><%= p.post_id %></td>
+        <td><%= p.domain %></td>
+        <td><%= p.parse_time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @texts %>

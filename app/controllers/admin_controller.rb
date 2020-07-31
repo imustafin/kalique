@@ -3,6 +3,7 @@ class AdminController < ApplicationController
                               password: Rails.configuration.x.admin_password,
                               realm: 'admin'
   def index
+    @texts = SourceText.paginate(page: params[:page])
   end
 
   def load_posts
