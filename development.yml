@@ -12,6 +12,11 @@ services:
     build:
       context: .
       target: kalique_base
+    environment:
+      VK_APP_ID: "${VK_APP_ID}"
+      VK_SECRET: "${VK_SECRET}"
+      VK_SERVICE: "${VK_SERVICE}"
+      PG_HOST: pg
     tmpfs:
       - /tmp
 
@@ -19,8 +24,6 @@ services:
     <<: *app
     stdin_open: true
     tty: true
-    environment:
-      PG_HOST: pg
     volumes:
       - .:/app:cached
       - bundle:/usr/local/bundle

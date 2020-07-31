@@ -15,5 +15,9 @@ module Kalique
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.x.vk_app_id = ENV['VK_APP_ID']
+    config.x.vk_secret = ENV['VK_SECRET']
+    config.x.vk_service = ENV['VK_SERVICE']
   end
 end
