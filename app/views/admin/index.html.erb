@@ -1,2 +1,11 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<h1>Admin of Kalique</h1>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= type %>: <%= msg %>
+  </div>
+<% end %>
+
+<%= button_to 'Load posts', admin_load_posts_path, method: :post %>
+<br>
+<%= button_to 'Delete all posts', admin_delete_all_posts_path, method: :post %>
