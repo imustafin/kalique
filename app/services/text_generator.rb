@@ -2,9 +2,9 @@ class TextGenerator
   def generate(seed)
     prefix = seed || ''
 
-    texts = VkPosts.new.texts(Rails.configuration.x.posts_domain)
+    texts = SourceText.pluck(:text)
 
-    markov = MarkyMarkov::TemporaryDictionary.new(10)
+    markov = MarkyMarkov::TemporaryDictionary.new(2)
     texts.each do |t|
       markov.parse_string(pack_string(t))
     end
@@ -14,7 +14,6 @@ class TextGenerator
 
 
   PACK_MAP = {
-    " " => "\0",
     "\n" => "\1"
   }
   def pack_string(s)
@@ -23,11 +22,11 @@ class TextGenerator
       ans = ans.gsub(k, v)
     end
 
-    ans.chars.join(' ')
+    ans
   end
 
   def unpack_string(s)
-    ans = s.gsub(' ', '')
+    ans = s
 
     PACK_MAP.each do |k, v|
       ans = ans.gsub(v, k)
