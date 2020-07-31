@@ -16,11 +16,12 @@ class VkPosts
     JSON.parse(response.body)['response']
   end
 
-  def wall_get_many(domain)
-    request('wall.get', domain: domain, count: 100)['items']
-  end
-
-  def texts(domain)
-    wall_get_many(domain).map { |p| p['text'] }
+  def wall_get(offset = 0)
+    request(
+      'wall.get',
+      domain: Rails.configuration.x.posts_domain,
+      count: 100,
+      offset: offset
+    )
   end
 end
