@@ -16,6 +16,10 @@ services:
       VK_APP_ID: "${VK_APP_ID}"
       VK_SECRET: "${VK_SECRET}"
       VK_SERVICE: "${VK_SERVICE}"
+
+      ADMIN_LOGIN: "${ADMIN_LOGIN}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
+
       PG_HOST: pg
     tmpfs:
       - /tmp

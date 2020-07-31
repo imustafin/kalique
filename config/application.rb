@@ -20,5 +20,8 @@ module Kalique
     config.x.vk_secret = ENV['VK_SECRET']
     config.x.vk_service = ENV['VK_SERVICE']
     config.x.posts_domain = 'kalikfan'
+
+    config.x.admin_login = ENV['ADMIN_LOGIN']
+    config.x.admin_password = ENV['ADMIN_PASSWORD']
   end
 end
