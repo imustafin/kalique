@@ -1,15 +1,17 @@
 class TextGenerator
-  def generate(seed)
+  def generate_with_strings(seed, strings)
     prefix = seed || ''
 
-    texts = SourceText.pluck(:text)
-
     markov = MarkyMarkov::TemporaryDictionary.new(2)
-    texts.each do |t|
+    strings.each do |t|
       markov.parse_string(pack_string(t))
     end
 
     prefix + ' ' + unpack_string(markov.generate_10_sentences)
+  end
+
+  def generate(seed)
+    generate_with_strings(seed, SourceText.pluck(:text))
   end
 
 
