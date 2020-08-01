@@ -26,3 +26,11 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:release -a ${{ env.HEROKU_APP_NAME }} web release
+    - name: Build test stack
+      env:
+        APP_HOST: http://kalique.herokuapp.com
+      run: docker-compose -f test.yml build
+    - name: Test UAT
+      env:
+        APP_HOST: http://kalique.herokuapp.com
+      run: docker-compose -f test.yml run --rm test

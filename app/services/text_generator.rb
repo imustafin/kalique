@@ -6,7 +6,7 @@ class TextGenerator
 
     markov = MarkyMarkov::TemporaryDictionary.new(2)
     strings.each do |t|
-      markov.parse_string(pack_string(t))
+      markov.parse_string(pack_string(t.to_s))
     end
 
     prefix + ' ' + unpack_string(markov.generate_10_sentences)

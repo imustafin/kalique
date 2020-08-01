@@ -7,7 +7,7 @@
   <%= form_with local: true do |form| %>
     <p>
       <%= form.label :seed %><br>
-      <%= form.text_field :seed %>
+      <%= form.text_field :seed, id: 'gen_input' %>
     </p>
 
     <p>
@@ -17,7 +17,7 @@
 
   <% if @generated != :error %>
     <div style="width: 70%; display: inline-block">
-      <div style="text-align: left">
+      <div style="text-align: left" id="generated">
         <%= simple_format(@generated) %>
       </div>
     </div>
