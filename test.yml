@@ -15,6 +15,7 @@ services:
     image: test
     environment:
       PG_HOST: pg
+      APP_HOST: "${APP_HOST}"
     volumes: []
     depends_on:
       - pg

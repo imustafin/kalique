@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'generate/index'
+  get 'generate/index', as: 'generate_index'
   post 'generate/index'
 
   get 'admin', to: 'admin#index', as: 'admin'
