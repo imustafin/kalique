@@ -1,5 +1,7 @@
 class GenerateController < ApplicationController
   def index
-    @generated = TextGenerator.new.generate(params[:seed]) if params.key?(:seed)
+    return unless params.key?(:seed)
+    @generated = TextGenerator.new.generate(params[:seed])
+    @generated = :error if @generated.nil?
   end
 end
