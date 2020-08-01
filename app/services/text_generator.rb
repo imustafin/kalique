@@ -1,5 +1,7 @@
 class TextGenerator
   def generate_with_strings(seed, strings)
+    return nil unless strings && !strings.empty?
+
     prefix = seed || ''
 
     markov = MarkyMarkov::TemporaryDictionary.new(2)
