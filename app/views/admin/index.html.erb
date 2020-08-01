@@ -1,33 +1,34 @@
 <h1>Admin of Kalique</h1>
 
 <% flash.each do |type, msg| %>
-  <div>
-    <%= type %>: <%= msg %>
+  <div id="<%= type %>">
+    <%= msg %>
   </div>
 <% end %>
 
-<%= button_to 'Load posts', admin_load_posts_path, method: :post %>
-<br>
-<%= button_to 'Delete all posts', admin_delete_all_posts_path, method: :post %>
+<div style="display: flex">
+  <%= button_to 'Load posts', admin_load_posts_path, method: :post, style: "display: flex; margin-right: 25px;" %>
+  <%= button_to 'Delete all posts', admin_delete_all_posts_path, method: :post %>
+</div>
 
-<table border=1>
+<table style="margin-bottom: 25px">
   <thead>
     <tr>
       <th>id</th>
-      <th>Text</th>
-      <th>Post Id</th>
+      <th>Post Id</th>
       <th>Domain</th>
       <th>Parse Time</th>
+      <th>Text</th>
     </tr>
   </thead>
-  <tbody>  
+  <tbody style="font-size: 0.8em;">
     <% @texts.each do |p| %>
       <tr>
         <td><%= p.id %></td>
-        <td><%= simple_format(p.text) %></td>
         <td><%= p.post_id %></td>
         <td><%= p.domain %></td>
         <td><%= p.parse_time %></td>
+        <td><%= simple_format(p.text) %></td>
       </tr>
     <% end %>
   </tbody>
