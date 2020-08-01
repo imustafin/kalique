@@ -59,3 +59,5 @@ gem 'httparty', '~> 0.18.1'
 gem 'marky_markov', '~> 0.3.5'
 
 gem 'will_paginate', '~> 3.3'
+
+gem 'skins', '~> 0.0.3'
