@@ -1,17 +1,23 @@
-<h1>Kalique</h1>
+<div style="text-align: center">
+  <h1>Kalique</h1>
 
-<h2>Text generation</h2>
+  <h2>Text Generation</h2>
 
 
-<%= form_with local: true do |form| %>
-  <p>
-    <%= form.label :seed %><br>
-    <%= form.text_field :seed %>
-  </p>
+  <%= form_with local: true do |form| %>
+    <p>
+      <%= form.label :seed %><br>
+      <%= form.text_field :seed %>
+    </p>
 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+    <p>
+      <%= form.submit "Generate" %>
+    </p>
+  <% end %>
 
-<%= simple_format(@generated) %>
+  <div style="width: 70%; display: inline-block">
+    <div style="text-align: left">
+      <%= simple_format(@generated) %>
+    </div>
+  </div>
+</div>
