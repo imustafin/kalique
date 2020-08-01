@@ -51,6 +51,7 @@ name | description | sample value
 `LANG` | linux env var | `en_US.UTF-8`
 `RACK_ENV` | env for rack in the application | `production`
 `RAILS_ENV` | env for rails in the application | `production`
+`SECRET_KEY_BASE` | used by rails for web security | `abc...`
 `VK_APP_ID` | application id of the VK app (described below) | `1234567`
 `VK_SERVICE` | service token of the VK app (described below) | `abc...`
 
