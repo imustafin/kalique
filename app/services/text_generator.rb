@@ -12,14 +12,30 @@ class TextGenerator
 
   private
 
-  DEPTH = 10
+  DEPTH = 5
+
+  BEFORE_FIRST = "\0"
+  AFTER_LAST = "\1"
+
+  def get_texts
+    posts = SourceText.pluck(:text).map(&:downcase)
+
+    # mans = File.read(Rails.root.join('man_ru.txt.small')).split('$$$###$$$')
+
+    # pp ['Kalik', posts.map(&:length).reduce(:+)]
+    # pp ['man', mans.map(&:length).reduce(:+)]
+
+    all_posts = posts
+    # all_posts = mans + posts
+    all_posts.map(&:downcase)
+  end
 
   def refresh_tree
-    posts = SourceText.pluck(:text)
-
     @root = Node.new
 
-    posts.each do |post|
+    get_texts.each do |post|
+      post = BEFORE_FIRST + post + AFTER_LAST
+
       post.chars.each_cons(DEPTH) do |tok|
         v = @root
         tok.each { |t| v = v.add(t) }
@@ -28,12 +44,10 @@ class TextGenerator
   end
 
   def gen_internal(seed)
-    ans = seed || @root.get.first
+    ans = seed.empty? ? BEFORE_FIRST : seed
 
-    100.times do
+    loop do
       last = ans.last(DEPTH - 1).chars
-
-      pp last
 
       v = @root
       path = []
@@ -47,14 +61,16 @@ class TextGenerator
         end
 
         path << char
-
-        pp path
       end
 
-      ans += v.get.first || @root.get.first
+      char = v.get.first || @root.get.first
+
+      break if char == AFTER_LAST
+
+      ans += char
     end
 
-    ans
+    ans.gsub(BEFORE_FIRST, '')
   end
 
   class Node
