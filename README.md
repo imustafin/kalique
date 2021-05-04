@@ -3,6 +3,10 @@ Pronounced as /kal'ik/.
 
 Kalique is a text generator written in Ruby on Rails.
 
+Text generation is similar to Markov Chains approach.
+
+A university project.
+
 ## Development
 ### Code, Git and GitHub
 Development is done with the use of git and GitHub.
